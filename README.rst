@@ -10,6 +10,7 @@ Kevin Horn wrote and maintains a comparable library, also called
 `rstgen <https://bitbucket.org/khorn/rstgen/src>`_. (TODO: Check
 whether we should join our efforts.)
 
+Source code: https://github.com/lino-framework/rstgen
 
 The ``header(level, text)`` function
 ====================================
