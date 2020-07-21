@@ -59,7 +59,7 @@ Here is the data we are going to render into different tables:
 >>> rows.append(["Estonia", "Vigala", "Luc"])
 >>> rows.append(["St. Vincent and the Grenadines", "Chateaubelair", "Nicole"])
 
-The simplest case of :func:`table`:
+The simplest case of ``table()``:
 
 >>> from rstgen import table
 >>> print(table(headers, rows))
@@ -101,7 +101,7 @@ Result:
  St. Vincent and the Grenadines   Chateaubelair   Nicole
 ================================ =============== ========
 
-You might prefer to use directly the :class:`Table` class:
+You might prefer to use directly the ``Table`` class:
 
 >>> from rstgen import Table
 >>> t = Table(headers)
