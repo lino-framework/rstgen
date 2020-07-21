@@ -1,6 +1,6 @@
-=================
-The rstgen module
-=================
+=====================
+The ``rstgen`` module
+=====================
 
 rstgen is a library of utilities to programmatically generate chunks of
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__.  It is being
@@ -11,7 +11,8 @@ Kevin Horn wrote and maintains a comparable library, also called
 whether we should join our efforts.)
 
 
-.. function:: header(level, text)
+The ``header(level, text)`` function
+====================================
 
 Render the text as a header with the specified level.
 
@@ -40,7 +41,8 @@ It uses and supposes the following system of header levels::
 
 
 
-.. function:: table(headers, rows=tuple(), **kw)
+The ``table(headers, rows=tuple(), **kw)`` function
+===================================================
 
 Convert the given headers and rows into an reStructuredText formatted table.
 
