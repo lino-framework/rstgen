@@ -104,7 +104,6 @@ def unindent(s):
 
     Examples:
 
-    >>> from atelier.utils import unindent
     >>> unindent('')
     ''
     >>> print(unindent('''
