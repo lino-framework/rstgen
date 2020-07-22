@@ -11,4 +11,6 @@ class BasicTests(TestCase):
         self.run_simple_doctests('README.rst')
 
     def test_rstgen(self):
-        self.run_simple_doctests('rstgen.py')
+        self.run_simple_doctests('rstgen/__init__.py')
+    def test_rstgen(self):
+        self.run_simple_doctests('rstgen/utils.py')
