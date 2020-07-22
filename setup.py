@@ -2,7 +2,8 @@ from setuptools import setup
 
 SETUP_INFO = dict(
     name='rstgen',
-    version='20.7.0',
+    version='20.7.1',
+    packages=['rstgen'],
     install_requires=[],
     test_suite='tests',
     description="Generate rst chunks from Python objects.",
