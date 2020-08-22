@@ -9,7 +9,9 @@ SETUP_INFO = dict(
     description="Generate rst chunks from Python objects.",
     license='BSD-2-Clause',
     author='Luc Saffre',
-    author_email='luc.saffre@gmail.com')
+    author_email='luc.saffre@gmail.com',
+    url='https://github.com/lino-framework/rstgen',
+)
 
 SETUP_INFO.update(classifiers="""\
 Programming Language :: Python
