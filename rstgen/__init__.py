@@ -303,7 +303,7 @@ def toctree(*children, **options):
 
     """
     text = "\n\n.. toctree::"
-    for k, v in list(options.items()):
+    for k, v in options.items():
         text += "\n    "
         text += ":{0}:".format(k)
         if isinstance(v, str):

@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # doctest rstgen/utils.py
-# Copyright 2009-2020 Rumma & Ko Ltd
+# Copyright 2009-2021 Rumma & Ko Ltd
 # License: BSD, see LICENSE for more details.
 
 """
@@ -16,7 +16,7 @@ import inspect
 import subprocess
 from dateutil import parser as dateparser
 from contextlib import contextmanager
-from unipath import Path
+from pathlib import Path
 from pprint import pprint
 from importlib import import_module
 
@@ -239,24 +239,6 @@ def cd(path):
 
 
 def srcref(mod):
-    """
-    Return the `source file name` for usage by Sphinx's ``srcref``
-    role.  Returns None if the source file is empty (which happens
-    e.g. for :file:`__init__.py` files whose only purpose is to mark a
-    package).
-
-    Examples:
-
-    >>> import atelier
-    >>> from atelier import sphinxconf
-    >>> from atelier.sphinxconf import base
-    >>> print(srcref(atelier))
-    https://github.com/lino-framework/atelier/blob/master/atelier/__init__.py
-    >>> print(srcref(sphinxconf))
-    https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/__init__.py
-    >>> print(srcref(base))
-    https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/base.py
-    """
     root_module_name = mod.__name__.split('.')[0]
     root_mod = __import__(root_module_name)
     srcref_url = getattr(root_mod, 'srcref_url', None)
@@ -275,7 +257,7 @@ def srcref(mod):
         if os.stat(srcref).st_size == 0:
             return
     #~ srcref = srcref[len(lino.__file__)-17:]
-    root = Path(root_mod.__file__).ancestor(2)
+    root = str(Path(root_mod.__file__).parents[1])
     if len(root):
         srcref = srcref[len(root) + 1:]
     srcref = srcref.replace(os.path.sep, '/')

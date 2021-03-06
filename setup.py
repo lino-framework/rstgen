@@ -5,6 +5,7 @@ SETUP_INFO = dict(
     version='20.7.3',
     packages=['rstgen'],
     install_requires=[],
+    tests_require=['atelier'],
     test_suite='tests',
     description="Generate rst chunks from Python objects.",
     license='BSD-2-Clause',
