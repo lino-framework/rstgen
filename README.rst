@@ -176,12 +176,12 @@ return a blank line when there are no rows:
 <BLANKLINE>
 
 
-The `srcref()` function
+The ``srcref()`` function
 ===========================
 
 Return the source file name of a module, for usage by Sphinx's ``srcref`` role.
 Returns `None` if the source file is empty (which happens e.g. for
-:file:`__init__.py` files whose only purpose is to mark a package).
+``__init__.py`` files whose only purpose is to mark a package).
 
 Examples:
 
@@ -196,8 +196,8 @@ https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/__init_
 >>> print(srcref(base))
 https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/base.py
 
-The module must have an attribute :attr:`srcref_url`. If it doesn't,
-`srcref()` returns `None`.
+The module must have an attribute ``srcref_url``. If it doesn't, ``srcref()``
+returns `None`.
 
 >>> import pathlib
 >>> print(srcref(pathlib))
