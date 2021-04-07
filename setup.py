@@ -8,7 +8,8 @@ SETUP_INFO = dict(
     tests_require=['atelier'],
     test_suite='tests',
     description="Generate rst chunks from Python objects.",
-    license='BSD-2-Clause',
+    license_files=['COPYING'],
+    url='https://github.com/lino-framework/rstgen',
     author='Luc Saffre',
     author_email='luc.saffre@gmail.com')
 
@@ -17,7 +18,7 @@ Programming Language :: Python
 Programming Language :: Python :: 3
 Development Status :: 5 - Production/Stable
 Intended Audience :: Developers
-License :: OSI Approved :: BSD License
+License :: OSI Approved :: GNU Affero General Public License v3
 Natural Language :: English
 Operating System :: OS Independent""".splitlines())
 

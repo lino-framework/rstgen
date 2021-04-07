@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2011-2020 Rumma & Ko Ltd
-# License: BSD, see LICENSE for more details.
+# License: GNU Affero General Public License v3 (see file COPYING for details)
 
 import sys
 import io

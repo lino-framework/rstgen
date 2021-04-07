@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # doctest rstgen/utils.py
 # Copyright 2009-2021 Rumma & Ko Ltd
-# License: BSD, see LICENSE for more details.
+# License: GNU Affero General Public License v3 (see file COPYING for details)
 
 """
 Defines a series of utility classes and functions.
