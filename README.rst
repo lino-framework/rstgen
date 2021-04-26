@@ -190,11 +190,11 @@ Examples:
 >>> from atelier import sphinxconf
 >>> from atelier.sphinxconf import base
 >>> print(srcref(atelier))
-https://github.com/lino-framework/atelier/blob/master/atelier/__init__.py
+https://gitlab.com/lino-framework/atelier/blob/master/atelier/__init__.py
 >>> print(srcref(sphinxconf))
-https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/__init__.py
+https://gitlab.com/lino-framework/atelier/blob/master/atelier/sphinxconf/__init__.py
 >>> print(srcref(base))
-https://github.com/lino-framework/atelier/blob/master/atelier/sphinxconf/base.py
+https://gitlab.com/lino-framework/atelier/blob/master/atelier/sphinxconf/base.py
 
 The module must have an attribute ``srcref_url``. If it doesn't, ``srcref()``
 returns `None`.
