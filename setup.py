@@ -11,7 +11,9 @@ SETUP_INFO = dict(
     license_files=['COPYING'],
     url='https://github.com/lino-framework/rstgen',
     author='Luc Saffre',
-    author_email='luc.saffre@gmail.com')
+    author_email='luc.saffre@gmail.com',
+    url='https://github.com/lino-framework/rstgen',
+)
 
 SETUP_INFO.update(classifiers="""\
 Programming Language :: Python
