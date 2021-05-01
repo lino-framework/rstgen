@@ -3,7 +3,7 @@ The ``rstgen`` module
 =====================
 
 rstgen is a library of utilities to programmatically generate chunks of
-`reStructuredText <http://docutils.sourceforge.net/rst.html>`__.  It is being
+`reStructuredText <https://docutils.sourceforge.io/rst.html>`__.  It is being
 used e.g. by `atelier`, `etgen` and `lino`.
 
 Kevin Horn wrote and maintains a comparable library, also called
@@ -196,8 +196,13 @@ https://gitlab.com/lino-framework/atelier/blob/master/atelier/sphinxconf/__init_
 >>> print(srcref(base))
 https://gitlab.com/lino-framework/atelier/blob/master/atelier/sphinxconf/base.py
 
-The module must have an attribute ``srcref_url``. If it doesn't, ``srcref()``
-returns `None`.
+.. The module must have an attribute ``srcref_url``.
+
+The module must have an attribute ``SETUP_INFO``, which must be a `dict`
+containing an item ``url`` If it doesn't, ``srcref()`` returns `None`. Otherwise
+``srcref()`` assumes that ``SETUP_INFO['url']`` is the base URL of the source
+repository.
+
 
 >>> import pathlib
 >>> print(srcref(pathlib))

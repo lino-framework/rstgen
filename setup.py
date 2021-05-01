@@ -2,12 +2,12 @@ from setuptools import setup
 
 SETUP_INFO = dict(
     name='rstgen',
-    version='21.3.0',
+    version='21.5.0',
     packages=['rstgen'],
     install_requires=[],
     tests_require=['atelier'],
     test_suite='tests',
-    description="Generate rst chunks from Python objects.",
+    description="Pythonic API for generating reStructuredText.",
     license_files=['COPYING'],
     url='https://github.com/lino-framework/rstgen',
     author='Luc Saffre',

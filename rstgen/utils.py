@@ -238,15 +238,27 @@ def cd(path):
     os.chdir(old_dir)
 
 
-def srcref(mod):
-    root_module_name = mod.__name__.split('.')[0]
-    root_mod = __import__(root_module_name)
-    srcref_url = getattr(root_mod, 'srcref_url', None)
-    if srcref_url is None:
-        # print(20180126, root_module_name, root_mod, srcref_url)
-        return
+def srcref_url_template(mod):
+    root_mod_name = mod.__name__.split('.')[0]
+    root_mod = __import__(root_mod_name)
+    setup_info = getattr(root_mod, 'SETUP_INFO', {})
+    url = setup_info.get('url')
+    if url is None:
+        return (root_mod, None)
+    if not url.endswith('/'):
+        url += "/"
+    # srcref_url = getattr(root_mod, 'srcref_url', None)
+    # if srcref_url is None:
+    #     # print(20180126, root_module_name, root_mod, srcref_url)
+    #     return
     #~ if not mod.__name__.startswith('lino.'):
         #~ return
+    return (root_mod, url + "blob/master/%s")
+
+def srcref(mod):
+    root_mod, tpl = srcref_url_template(mod)
+    if tpl is None:
+        return
     srcref = mod.__file__
     if srcref.endswith('.pyc'):
         srcref = srcref[:-1]
@@ -261,7 +273,7 @@ def srcref(mod):
     if len(root):
         srcref = srcref[len(root) + 1:]
     srcref = srcref.replace(os.path.sep, '/')
-    return srcref_url % srcref
+    return tpl % srcref
 
 
 def import_from_dotted_path(dotted_names, path=None):
