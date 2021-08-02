@@ -207,7 +207,7 @@ class SubProcessParent(object):
         # kw.update(stderr=buffer)
         # rv = subprocess.call(args,**kw)
         if rv != 0:
-            cmd = ' '.join(args)
+            cmd = ' '.join(map(str, args))  # args can contain PosixPath instances
             # if six.PY2:
             #     # if the output contains non-asci chars, then we must
             #     # decode here in order to wrap it into our msg. Later
