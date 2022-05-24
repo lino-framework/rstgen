@@ -2,7 +2,7 @@ from setuptools import setup
 
 SETUP_INFO = dict(
     name='rstgen',
-    version='21.8.0',
+    version='22.5.0',
     packages=['rstgen'],
     install_requires=[],
     tests_require=['atelier'],
