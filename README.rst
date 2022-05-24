@@ -214,3 +214,4 @@ Changelog
 =========
 
 2021-03-06 Use pathlib instead of unipath
+2022-05-24 Moved some utility functions from `atelier.utils` to `rstgen.utils`
