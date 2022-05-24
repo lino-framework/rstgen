@@ -1,0 +1,12 @@
+/* extends insipid.css_t to have smaller prev/next links
+*/
+
+.relbar > a {
+    padding: 0px;
+    padding-top: 12px;
+    color: black;
+}
+
+.relbar .title {
+    font-size: 80%;  // Luc 20201025 1.4em;
+}

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2011-2020 Rumma & Ko Ltd
+# Copyright 2011-2022 Rumma & Ko Ltd
 # License: GNU Affero General Public License v3 (see file COPYING for details)
+
+SETUP_INFO = {'url': 'https://github.com/lino-framework/rstgen'}
 
 import sys
 import io

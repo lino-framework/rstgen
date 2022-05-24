@@ -3,7 +3,7 @@ from setuptools import setup
 SETUP_INFO = dict(
     name='rstgen',
     version='22.5.0',
-    packages=['rstgen'],
+    packages=['rstgen', 'rstgen.sphinxconf', 'rstgen.sphinxconf.languages'],
     install_requires=[],
     tests_require=['atelier'],
     test_suite='tests',
