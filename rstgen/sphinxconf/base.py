@@ -371,10 +371,12 @@ def setup(app):
     #     rolename='model', indextemplate='pair: %s; model')
     # app.connect('build-finished', handle_finished)
 
-    if 'name' in atelier.current_project.SETUP_INFO:
+    # removed 20220528. Not sure whether they are still needed. 
+    # if 'name' in atelier.current_project.SETUP_INFO:
+    #
+    #     app.connect('autodoc-skip-member', autodoc_skip_member)
+    #     app.connect('autodoc-process-docstring', autodoc_add_srcref)
 
-        app.connect('autodoc-skip-member', autodoc_skip_member)
-        app.connect('autodoc-process-docstring', autodoc_add_srcref)
     # app.connect(str('autodoc-process-signature'), process_signature)
     app.connect('html-page-context', html_page_context)
 

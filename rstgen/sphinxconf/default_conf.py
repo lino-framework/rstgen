@@ -1,45 +1,57 @@
 # -*- coding: utf-8 -*-
 # this is being read using exec() by rstgen.sphinxconf.configure()
 
-# from rstgen.sphinxconf import configure
 from pathlib import Path
-from rstgen.utils import srcref_url_template
-import atelier
+import rstgen
+
+# from rstgen.sphinxconf import configure ; configure(globals())
 
 docs_root = Path(__file__).parent.absolute()
 # print("20210426", docs_root)
 
-prj = atelier.current_project
-if prj.main_package:
-    root_mod, tpl = srcref_url_template(prj.main_package)
-    if tpl:
-        extlinks.update(srcref=(tpl, ''))
+# prj = atelier.current_project
+# if prj.main_package:
+#     root_mod, tpl = srcref_url_template(prj.main_package)
+#     if tpl:
+#         extlinks.update(srcref=(tpl, ''))
+
+use_dirhtml = rstgen.get_config_var('use_dirhtml')
+selectable_languages = rstgen.get_config_var('selectable_languages')
 
 public_url = html_context.setdefault(
-    'public_url', prj.get_public_docs_url('docs'))
+    'public_url', rstgen.get_config_var('public_url'))
+    # 'public_url', prj.get_public_docs_url('docs'))
 
 def lngfmt(lng):
     return lng.upper()
 
-def get_lang_selector(language, pagename, sep=" | "):
-    # public_url = prj.get_xconfig('intersphinx_urls')['docs']
-    # public_url = prj.get_public_docs_url('docs')
-    # public_url = html_context['public_url']
-    selectable_languages = prj.config['selectable_languages']
-    if not selectable_languages:
-        return ''
-    if len(selectable_languages) <= 1:
-        return ''
-    use_dirhtml = prj.config['use_dirhtml']
-    filename = pagename + source_suffix
+def get_page_url(language, pagename):
     if use_dirhtml:
         if pagename == master_doc:
             pagename = ""
         elif pagename.endswith("/" + master_doc):
             pagename = pagename[:-len(master_doc)]
-        homename = ""
     else:
         pagename += ".html"
+    if not selectable_languages:
+        return pagename
+    if language == selectable_languages[0]:
+        return pagename
+    return lng + "/" + pagename
+
+def get_lang_selector(language, pagename, sep=" | "):
+    # public_url = prj.get_xconfig('intersphinx_urls')['docs']
+    # public_url = prj.get_public_docs_url('docs')
+    # public_url = html_context['public_url']
+    if not selectable_languages:
+        return ''
+    if len(selectable_languages) <= 1:
+        return ''
+    # get_page_url()
+    filename = pagename + source_suffix
+    if use_dirhtml:
+        homename = ""
+    else:
         homename = master_doc + source_suffix
 
     html = ''
@@ -49,30 +61,29 @@ def get_lang_selector(language, pagename, sep=" | "):
         if lng == language:
             html += "<b>{}</b>".format(lngfmt(lng))
         else:
+            href = public_url + "/" + get_page_url(lng, pagename)
             if i == 0:
-                href = pagename
                 pth = docs_root.parent / "docs" / filename
                 if not pth.exists():
                     href = homename
             else:
-                href = lng + "/" + pagename
                 pth = docs_root.parent / (lng + "docs") / filename
                 if not pth.exists():
                     href = lng + "/" + homename
                     # print("Not found b:", pth)
-            href = public_url + "/" + href
             html += '<a href="{}">{}</a>'.format(href, lngfmt(lng))
     # html += "</p>"
     return html
 
 html_context.update(get_lang_selector=get_lang_selector)
+html_context.update(get_page_url=get_page_url)
 
 
 # extlinks = {}
 # extensions = []
 # templates_path = []
 
-# configure(globals())
+
 
 # extensions += ['sphinxcontrib.youtube']
 extensions += ['rstgen.sphinxconf.blog']

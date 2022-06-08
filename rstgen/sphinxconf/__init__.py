@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2011-2021 Rumma & Ko Ltd
+# Copyright 2011-2022 Rumma & Ko Ltd
 # License: GNU Affero General Public License v3 (see file COPYING for details)
 
 """
 Sphinx extensions and a :func:`configure` function used to build
 the documentation trees maintained by us.
-
-
-.. toctree::
 
 .. autosummary::
    :toctree:
@@ -30,8 +27,6 @@ import os
 from pathlib import Path
 from pkg_resources import parse_version
 import sphinx
-import atelier
-from atelier.projects import get_project_from_path
 
 def configure(globals_dict, project=None, conffiles=["default_conf.py"]):
     """
@@ -64,27 +59,13 @@ def configure(globals_dict, project=None, conffiles=["default_conf.py"]):
     # globals_dict.setdefault('html_theme', "pydata_sphinx_theme")
     # globals_dict.update(html_theme="bizstyle")
 
+    globals_dict.setdefault('html_context', dict())
     globals_dict.setdefault('extlinks', dict())
     globals_dict.setdefault('intersphinx_mapping', dict())
     globals_dict.update(exclude_patterns=['old', 'include', 'shared', '.build'])
     extensions = []
     globals_dict.update(extensions=extensions)
 
-    if project is None:
-        project = get_project_from_path(docs_root.parent)
-    atelier.current_project = project
-    project.load_info()
-    globals_dict.setdefault('html_context', dict()).update(
-        SETUP_INFO=project.SETUP_INFO)
-
-    version = project.SETUP_INFO.get('version', None)
-    if version:
-        globals_dict.update(release=version)
-        globals_dict.update(version='.'.join(version.split('.')[:2]))
-
-    if 'name' in project.SETUP_INFO:
-        extensions += ['sphinx.ext.autodoc', 'sphinx.ext.autosummary']
-        
     extensions += [
         'sphinx.ext.inheritance_diagram',
         'sphinx.ext.todo',

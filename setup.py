@@ -24,5 +24,11 @@ Operating System :: OS Independent""".splitlines())
 
 SETUP_INFO.update(long_description=open("README.rst").read())
 
+SETUP_INFO.update(
+    zip_safe=False,
+    include_package_data=True)
+
+
+
 if __name__ == '__main__':
     setup(**SETUP_INFO)

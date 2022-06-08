@@ -4,6 +4,25 @@
 
 SETUP_INFO = {'url': 'https://github.com/lino-framework/rstgen'}
 
+# can be set from your conf.py
+# used e.g. in default_conf.py
+_config = {
+    'public_url': '',
+    'selectable_languages': '',
+    'use_dirhtml': False,
+}
+
+def set_config_var(**kwargs):
+    for k, v in kwargs.items():
+        if not k in _config:
+            raise Exception("Invalid config var {}".format(k))
+        _config[k] = v
+    # print("20220529 set {}".format(_config))
+
+def get_config_var(k):
+    return _config[k]
+
+
 import sys
 import io
 

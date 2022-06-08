@@ -1,0 +1,4 @@
+include rstgen/sphinxconf/templates/*
+include rstgen/sphinxconf/static/*
+global-include *.py *.css *.html
+prune docs
