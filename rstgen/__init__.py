@@ -18,8 +18,10 @@ def set_config_var(**kwargs):
             raise Exception("Invalid config var {}".format(k))
         _config[k] = v
     # print("20220529 set {}".format(_config))
+    # testing e.g. in lucet
 
 def get_config_var(k):
+    # print("20220529 get_config({}) --> {}".format(k, _config[k]))
     return _config[k]
 
 

@@ -52,16 +52,16 @@ uses a variable number of pipe characters. For example:
 
 
 >>> print(line2html("foo.jpg"))
-<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="foo.jpg"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; width:30%;" title="foo.jpg"/></a>
+<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="foo.jpg"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; height:10em;" title="foo.jpg"/></a>
 
 >>> print(line2html("foo.jpg|This is a nice picture"))
-<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; width:30%;" title="This is a nice picture"/></a>
+<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; height:10em;" title="This is a nice picture"/></a>
 
 >>> print(line2html("foo.jpg|thumb|This is a nice picture"))
-<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; float:right; width:30%;" title="This is a nice picture"/></a>
+<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; float:right; height:10em;" title="This is a nice picture"/></a>
 
 >>> print(line2html("foo.jpg|thumb|left|This is a nice picture"))
-<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; float:left; width:30%;" title="This is a nice picture"/></a>
+<a href="http://example.com//foo.jpg"  data-lightbox="image-1" data-title="This is a nice picture"/><img src="http://example.com//thumbnails/foo.jpg" style="padding:4px; float:left; height:10em;" title="This is a nice picture"/></a>
 
 The generated HTML also includes attributes for `lightbox
 <http://lokeshdhakar.com/projects/lightbox2/>`_.  In order to activate
@@ -96,7 +96,7 @@ class Format(object):
     @classmethod
     def update_context(self, caption, tplkw):
         tplkw.update(caption=caption)
-        tplkw.update(style="padding:4px; width:30%;")
+        tplkw.update(style="padding:4px; height:10em;")
 
 
 class Thumb(Format):
@@ -106,12 +106,12 @@ class Thumb(Format):
 
         chunks = caption.split('|')
         if len(chunks) == 1:
-            tplkw['style'] = "padding:4px; float:right; width:30%;"
+            tplkw['style'] = "padding:4px; float:right; height:10em;"
         elif len(chunks) == 2:
             align, caption = chunks
             if not align in ("right", "left", "center"):
                 raise Exception("Invalid alignment '{0}'".format(align))
-            tplkw['style'] = "padding:4px; float:{0}; width:30%;".format(align)
+            tplkw['style'] = "padding:4px; float:{0}; height:10em;".format(align)
         else:
             raise Exception("Impossible")
 
@@ -146,7 +146,7 @@ def line2html(name, buildurl=buildurl):
         return ''
     kw = dict()  # style="padding:4px")
     kw['class'] = ''
-    kw['style'] = "padding:4px; width:30%;"
+    kw['style'] = "padding:4px; height:10em;"
     if True:  # new format using only | as separator
         caption = name
         fmt = FORMATS[None]
