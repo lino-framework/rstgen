@@ -37,7 +37,7 @@ def get_page_url(language, pagename):
         return pagename
     if language == selectable_languages[0]:
         return pagename
-    return lng + "/" + pagename
+    return language + "/" + pagename
 
 def get_lang_selector(language, pagename, sep=" | "):
     # public_url = prj.get_xconfig('intersphinx_urls')['docs']

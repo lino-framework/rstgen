@@ -21,7 +21,9 @@ def set_config_var(**kwargs):
     # testing e.g. in lucet
 
 def get_config_var(k):
-    # print("20220529 get_config({}) --> {}".format(k, _config[k]))
+    # if k == "selectable_languages":
+    #     # raise Exception()
+    #     print("20220529 get_config({}) --> {}".format(k, _config[k]))
     return _config[k]
 
 
