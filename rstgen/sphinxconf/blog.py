@@ -233,7 +233,7 @@ class MainBlogIndexDirective(InsertInputDirective):
         else:
             children = list(map(year2docname, years))
             text += toctree(*children, hidden=True)
-        # print('20211021b get_rst()', text)
+        # print('20211021b MainBlogIndexDirective.get_rst()', env.docname, text)
         return text
 
 class YearBlogIndexDirective(InsertInputDirective):

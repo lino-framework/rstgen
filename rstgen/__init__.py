@@ -1,6 +1,21 @@
 # -*- coding: utf-8 -*-
 # Copyright 2011-2022 Rumma & Ko Ltd
 # License: GNU Affero General Public License v3 (see file COPYING for details)
+# docs: https://atelier.lino-framework.org/rstgen.html
+
+"""See :doc:`/rstgen`.
+
+.. autosummary::
+   :toctree:
+
+   utils
+   sphinxconf
+
+
+"""
+
+import sys
+import io
 
 SETUP_INFO = {'url': 'https://github.com/lino-framework/rstgen'}
 
@@ -27,11 +42,8 @@ def get_config_var(k):
     return _config[k]
 
 
-import sys
-import io
-
 class Column(object):
-    "A column in a table. "
+    # A column in a Table.
 
     def __init__(self, table, index, header, width=None):
         self.table = table
@@ -43,8 +55,7 @@ class Column(object):
         return "{}[{}]:{}".format(self.table, self.index, self.header)
 
     def adjust_width(self, row):
-        """Adjust required width of this column for the given row.
-        """
+        # Adjust required width of this column for the given row.
         s = self.table.format_value(row[self.index])
         s = str(s)
         for ln in s.splitlines():
@@ -65,10 +76,7 @@ def header(level, text):
 
 
 def write_header(fd, level, text):
-    """Write the string `text` to file `fd` as a header of the given
-    `level`. See :func:`header`.
-
-    """
+    # Write the string `text` to file `fd` as a header of the given `level`.
 
     def writeln(text=''):
         fd.write(text + '\n')
@@ -102,9 +110,6 @@ def _write_header(writeln, level, s):
 
 
 class Table(object):
-    """Used to render a table.
-
-    """
     simple = True
 
     def format_value(self, v):
@@ -147,10 +152,6 @@ class Table(object):
         return '\n'.join(x)
 
     def write(self, fd, data=[]):
-        """
-        rstgen.table(['header1','header2']) no longer raises an exception "No rows in []"
-        but renders a table with only headers and no rows.
-        """
         # ~ if len(data) == 0:
         # ~ raise Exception("No rows in %r" % data)
         rows = []
@@ -206,53 +207,7 @@ def table(headers, rows=tuple(), **kw):
     return t.to_rst(rows)
 
 
-# ~ def py2rst(v):
-# ~ from django.db import models
-# ~ if issubclass(v,models.Model):
-# ~ headers = ("name","verbose name","type","help text")
-# ~ rows = [
-# ~ (f.name,f.verbose_name,f.__class__.__name__,f.help_text)
-# ~ for f in v._meta.fields
-# ~ ]
-# ~ return table(headers,rows)
-# ~ return unicode(v)
-
-
 def ul(items, bullet="-"):
-    r""" Render the given `items` as a `bullet list
-    <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#bullet-lists>`_.
-    `items` must be an iterable whose elements are strings.
-
-    If at least one item contains more than one paragraph,
-    then all items are separated by an additional blank line.
-
-    >>> print(ul(["Foo", "Bar", "Baz"]))
-    - Foo
-    - Bar
-    - Baz
-    <BLANKLINE>
-    >>> print(ul([
-    ...   "Foo", "An item\nwith several lines of text.", "Bar"]))
-    - Foo
-    - An item
-      with several lines of text.
-    - Bar
-    <BLANKLINE>
-    >>> print(ul([
-    ...   "A first item\nwith several lines of text.",
-    ...   "Another item with a nested paragraph:\n\n  Like this.\n\nWow."]))
-    <BLANKLINE>
-    - A first item
-      with several lines of text.
-    <BLANKLINE>
-    - Another item with a nested paragraph:
-    <BLANKLINE>
-        Like this.
-    <BLANKLINE>
-      Wow.
-    <BLANKLINE>
-
-    """
     s = ""
     compressed = True
     for i in items:
@@ -273,60 +228,15 @@ def ul(items, bullet="-"):
 
 
 def ol(items, bullet="#."):
-    r"""Convert the given `items` into an ordered list.
-
-`items` must be an iterable whose elements are strings.
-
-    >>> print(ol(["Foo", "Bar", "Baz"]))
-    #. Foo
-    #. Bar
-    #. Baz
-    <BLANKLINE>
-    >>> print(ol([
-    ...   "Foo", "An item\nwith several lines of text.", "Bar"]))
-    #. Foo
-    #. An item
-       with several lines of text.
-    #. Bar
-    <BLANKLINE>
-    >>> print(ol([
-    ...   "A first item\nwith several lines of text.",
-    ...   "Another item with a nested paragraph:\n\n  Like this.\n\nWow."]))
-    <BLANKLINE>
-    #. A first item
-       with several lines of text.
-    <BLANKLINE>
-    #. Another item with a nested paragraph:
-    <BLANKLINE>
-         Like this.
-    <BLANKLINE>
-       Wow.
-    <BLANKLINE>
-    """
     return ul(items, bullet)
 
 
 def boldheader(title):
-    """Convert the given string into bold string, prefixed and followed by
-    newlines."""
     return "\n\n**%s**\n\n" % str(title).strip()
 
 
 #
 def toctree(*children, **options):
-    r"""Return a `toctree` directive with specified `options` and
-`children`.
-
-.. rubric:: Usage examples
-
->>> toctree('a', 'b', 'c', maxdepth=2)
-'\n\n.. toctree::\n    :maxdepth: 2\n\n    a\n    b\n    c\n'
-
->>> toctree('a', 'b', 'c', hidden=True)
-'\n\n.. toctree::\n    :hidden:\n\n    a\n    b\n    c\n'
-
-
-    """
     text = "\n\n.. toctree::"
     for k, v in options.items():
         text += "\n    "
@@ -364,24 +274,7 @@ class stdout_prefix(object):
 
 
 def attrtable(rows, cols):
-    """A shortcut for rendering a table showing the given attributes for
-    each object.
-
-    Arguments:
-        rows: an iterator of objects
-        cols: a string with a space-separated list of attribute names
-
-    """
     if isinstance(cols, str):
         cols = cols.split()
     cells = [[str(getattr(obj, k)) for k in cols] for obj in rows]
     return table(cols, cells)
-
-
-def _test():
-    import doctest
-    doctest.testmod()
-
-
-if __name__ == "__main__":
-    _test()
