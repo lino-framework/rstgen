@@ -2,6 +2,8 @@
 The ``rstgen`` module
 =====================
 
+Warning: This repository has moved to https://gitlab.com/lino-framework/rstgen
+
 Some utilities for generating chunks of `reStructuredText
 <https://docutils.sourceforge.io/rst.html>`__.
 
